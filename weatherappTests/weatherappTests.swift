@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import weather
+@testable import weatherappapp
 
 class weatherTests: XCTestCase {
 

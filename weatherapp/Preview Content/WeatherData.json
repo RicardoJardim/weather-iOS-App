@@ -1,0 +1,44 @@
+
+{
+    coord: {
+        lon: -16.9,
+        lat: 32.6333
+    },
+    weather: [
+        {
+            id: 802,
+            main: "Clouds",
+            description: "scattered clouds",
+            icon: "03d"
+        }
+    ],
+    base: "stations",
+    main: {
+        temp: 293.37,
+        feels_like: 293.77,
+        temp_min: 292.11,
+        temp_max: 293.71,
+        pressure: 1021,
+        humidity: 89
+    },
+    visibility: 10000,
+    wind: {
+        speed: 3.6,
+        deg: 20
+    },
+    clouds: {
+        all: 40
+    },
+    dt: 1639330782,
+    sys: {
+        type: 2,
+        id: 2009137,
+        country: "PT",
+        sunrise: 1639296026,
+        sunset: 1639332153
+    },
+    timezone: 0,
+    id: 2267827,
+    name: "Funchal",
+    cod: 200
+}
