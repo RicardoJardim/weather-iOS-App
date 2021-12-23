@@ -17,11 +17,14 @@ class WeatherService{
         
         let (data, response) = try await URLSession.shared.data(for: urlRequest)
    
+
+        // Return if response istn HTTPURLResponde
         guard (response as? HTTPURLResponse)?.statusCode == 200 else {fatalError("API DOWN")}
         
-        let DecodeData = try JSONDecoder() .decode(ResponseBody.self,  from:data)
+        let DecodeData = try JSONDecoder().decode(ResponseBody.self,  from:data)
         return DecodeData
     }
+    
 }
 
 
@@ -30,8 +33,8 @@ struct ResponseBody: Decodable {
     var coord: CoordinatesResponse
     var weather: [WeatherResponse]
     var main: MainResponse
-    var name: String
     var wind: WindResponse
+    var name: String
 
     struct CoordinatesResponse: Decodable {
         var lon: Double
@@ -43,6 +46,7 @@ struct ResponseBody: Decodable {
         var main: String
         var description: String
         var icon: String
+        
     }
 
     struct MainResponse: Decodable {
@@ -57,6 +61,23 @@ struct ResponseBody: Decodable {
     struct WindResponse: Decodable {
         var speed: Double
         var deg: Double
+    }
+    
+    
+}
+
+extension ResponseBody.WeatherResponse{
+    func getImageWeather() -> String{
+        switch main{
+            case "Sun":
+                return Constants.images.sun
+            case "Clouds":
+                return Constants.images.cloud
+            case "Rain":
+                return Constants.images.rain
+            default:
+                return ""
+        }
     }
 }
 

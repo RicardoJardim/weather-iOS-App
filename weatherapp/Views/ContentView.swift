@@ -35,7 +35,7 @@ struct ContentView: View {
                 }
             }
             
-        }.background(Color(hue: 0.677, saturation: 0.95, brightness: 0.837)).preferredColorScheme(.dark)
+        }.background(Constants.mainColor).preferredColorScheme(.dark)
     }
 }
 

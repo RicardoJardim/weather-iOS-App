@@ -9,6 +9,7 @@ import SwiftUI
 
 struct WeatherView: View {
     var weather: ResponseBody
+    
     var body: some View {
         ZStack(alignment: .leading){
             
@@ -19,14 +20,12 @@ struct WeatherView: View {
                     Text(weather.name).bold().font( .title)
                     
                     Text("Today, \(Date().formatted(.dateTime.month().day().hour().minute()))").fontWeight(.light)
-                    
-                    Spacer()
-                    
+                                        
                     VStack{
                         
                         HStack{
                             VStack(spacing:20){
-                                Image(systemName: "sun.max").font(.system(size: 40 ))
+                                Image(systemName: weather.weather[0].getImageWeather()).font(.system(size: 40 ))
                                 
                                 Text(weather.weather[0].main)
                             }.frame(width:  150, alignment: .leading)
@@ -48,13 +47,34 @@ struct WeatherView: View {
                     }
                     
                     Spacer()
-
                     
-                }.frame(maxWidth:.infinity)
+                    
+                }.frame(maxWidth:.infinity, alignment: .leading)
                 
             }.padding().frame(maxWidth:.infinity, alignment: .leading)
-            
-        }.edgesIgnoringSafeArea(.bottom).background(Color(hue: 0.677, saturation: 0.95, brightness: 0.837)).preferredColorScheme(.dark)
+
+            VStack{
+                Spacer()
+
+                VStack(alignment: .leading, spacing: 20){
+                    Text("Weather now").font(.title).bold().padding(.bottom).foregroundColor(Constants.mainColor)
+                    
+                    HStack{
+                        WeatherRow(logo: "thermometer", name: "Min temp", value: (weather.main.tempMin.roundDouble() + "º") )
+                        Spacer()
+                        WeatherRow(logo: "thermometer", name: "Max temp", value: (weather.main.tempMax.roundDouble() + "º") )
+                        
+                    }
+                    
+                    HStack{
+                        WeatherRow(logo: "wind", name: "Wind speed", value: (weather.wind.speed.roundDouble() + "m/s") )
+                        Spacer()
+                        WeatherRow(logo: "humidity", name: "Humidity", value: (weather.main.humidity.roundDouble()  + "%") )
+                        
+                    }
+                }.frame(maxWidth: .infinity,alignment: .leading).padding().padding(.bottom, 20).foregroundColor(Constants.mainColor).background(Constants.secColor).cornerRadius(20,corners: [.topLeft,.topRight])
+            }
+        }.edgesIgnoringSafeArea(.bottom).background(Constants.mainColor).preferredColorScheme(.dark)
         
     }
 }

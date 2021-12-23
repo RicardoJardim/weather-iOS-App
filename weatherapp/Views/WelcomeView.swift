@@ -22,7 +22,7 @@ struct WelcomeView: View {
             
             LocationButton(.shareCurrentLocation){
                 locationService.RequestLocation()
-            }.cornerRadius(30).symbolVariant(.fill).foregroundColor(.white)
+            }.cornerRadius(30).symbolVariant(.fill).foregroundColor(Constants.secColor)
         }.frame(maxWidth: .infinity,  maxHeight: .infinity)
     }
 }
